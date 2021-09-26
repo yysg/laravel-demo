@@ -17,6 +17,10 @@ RUN apt-get clean \
     && apt-get install -y libzip-dev \
     && docker-php-ext-install pdo pdo_pgsql zip gd pcntl opcache bcmath
 
+# install xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
 # Installs Composer to easily manage your PHP dependencies.
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
